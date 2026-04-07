@@ -250,7 +250,7 @@
     <div class="card" oncontextmenu="return false">
       <h2>第一题：帮朋友选一个创业项目</h2>
       <div class="question-body">
-        <p>你的朋友打算在大学城旁开一家小店，预算有限只能主打一个品类。这所大学有约 2 万名在校生，周边已有一条成熟商业街。他调研后收集了以下信息，请帮他选择并说明理由。</p>
+        <p>你的朋友打算在大学城旁开一家小店，手里有 <strong>8 万元启动资金</strong>，只能主打一个品类。这所大学有约 2 万名在校生，周边已有一条成熟商业街。他调研后收集了以下信息，请帮他选择并说明理由。</p>
         <div class="tbl-wrap">
           <table>
             <thead>
@@ -399,8 +399,8 @@
       <div class="subq">
         <div class="subq-title">4. 以下两种经营策略，你更倾向哪种？为什么？</div>
         <div class="question-body" style="margin-bottom:10px;">
-          <p><strong>策略A：</strong>专注这个品类，旺季全力冲刺做到头部（目标品类前5），淡季用来优化产品、谈供应链、研究竞品，为下一个旺季蓄力。好处是资源聚焦、容易做深做透；风险是淡季半年几乎没有现金流。</p>
-          <p><strong>策略B：</strong>以此品类为起点，淡季同步开发互补品类（如夏季对应产品），用1-2年时间建立覆盖全年的产品线。好处是现金流更稳定、抗风险能力强；风险是精力分散、每个品类都可能做不深。</p>
+          <p><strong>策略A：</strong>专注这个品类，旺季全力冲刺做到头部（目标品类前5），淡季用来优化产品、谈供应链、研究竞品，为下一个旺季蓄力。</p>
+          <p><strong>策略B：</strong>以此品类为起点，淡季同步开发互补品类（如夏季对应产品），用1-2年时间建立覆盖全年的产品线。</p>
         </div>
         <div class="radio-group" id="q4-strategy-group">
           <label><input type="radio" name="q4_strategy" value="A" /> 策略A</label>
@@ -816,17 +816,28 @@ async function submitExam(isAuto) {
 }
 
 async function doPost(payload) {
-  document.getElementById("submit-error").classList.add("hidden");
+  const errDiv = document.getElementById("submit-error");
+  errDiv.classList.add("hidden");
   try {
     const resp = await fetch(`${API_URL}/api/submit`, {
       method:  "POST",
       headers: { "Content-Type": "application/json" },
       body:    JSON.stringify(payload),
     });
+    if (resp.status === 409) {
+      // Already submitted (e.g. from another device)
+      const data = await resp.json();
+      errDiv.innerHTML = `<div class="msg msg-warning">${data.error || "该链接已提交过答卷"}</div>`;
+      errDiv.classList.remove("hidden");
+      clearAutosave();
+      localStorage.setItem(`submitted_${token}`, "1");
+      return false;
+    }
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     return true;
   } catch (e) {
-    document.getElementById("submit-error").classList.remove("hidden");
+    errDiv.innerHTML = '<div class="msg msg-error">提交失败，请检查网络连接后重试。</div><button class="btn btn-danger" onclick="handleRetry()">重新提交</button>';
+    errDiv.classList.remove("hidden");
     return false;
   }
 }
