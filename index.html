@@ -481,6 +481,16 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("btn-start").addEventListener("click", handleStart);
   document.getElementById("btn-submit").addEventListener("click", handleSubmit);
   document.getElementById("btn-retry").addEventListener("click", handleRetry);
+
+  // Limit Q2 checkboxes to max 2
+  document.querySelectorAll('input[name="q2_choices"]').forEach(cb => {
+    cb.addEventListener("change", () => {
+      const checked = document.querySelectorAll('input[name="q2_choices"]:checked');
+      if (checked.length > 2) {
+        cb.checked = false;
+      }
+    });
+  });
 });
 
 /* ═══════════════════════════════════════════════════════
