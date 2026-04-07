@@ -149,18 +149,30 @@
     .subq { margin-bottom: 24px; }
     .subq-title { font-weight: 600; font-size: 15px; margin-bottom: 8px; color: #3d3832; }
 
-    /* ── Bar chart ── */
-    .bar-chart { display: flex; align-items: flex-end; gap: 4px; height: 120px; margin: 16px 0; }
-    .bar-col { display: flex; flex-direction: column; align-items: center; flex: 1; }
-    .bar {
-      width: 100%;
-      background: linear-gradient(to top, #b35c3a, #d4a574);
-      border-radius: 3px 3px 0 0;
-      transition: background .2s;
-      min-height: 2px;
+    /* ── Trend chart (SVG) ── */
+    .trend-chart-wrap { margin: 16px 0; overflow-x: auto; }
+    .trend-chart-wrap svg { display: block; width: 100%; height: auto; min-width: 500px; }
+
+    /* ── Mobile responsive ── */
+    @media (max-width: 640px) {
+      #app { padding: 20px 10px 40px; }
+      #app.exam-active { padding-top: 60px; }
+      .card { padding: 20px 16px; border-radius: 12px; }
+      h1 { font-size: 20px; }
+      h2 { font-size: 17px; }
+      .subq-title { font-size: 14px; }
+      p { font-size: 14px; }
+      table { font-size: 12px; }
+      th, td { padding: 6px 8px; }
+      textarea { min-height: 80px; font-size: 14px; }
+      .radio-group, .checkbox-group { gap: 6px; }
+      .radio-group label, .checkbox-group label { padding: 5px 10px; font-size: 13px; }
+      .btn { padding: 10px 24px; font-size: 15px; }
+      #timer-bar { padding: 8px 16px; }
+      #timer-display { font-size: 18px; }
+      #timer-label { font-size: 12px; }
+      .exam-notice { font-size: 12px; }
     }
-    .bar-val { font-size: 10px; color: #6b645c; margin-top: 2px; }
-    .bar-lbl { font-size: 10px; color: #8a8279; margin-top: 2px; writing-mode: vertical-rl; transform: rotate(180deg); }
 
     /* ── Anti-copy on question containers ── */
     .question-body {
@@ -236,7 +248,7 @@
 
     <!-- 第一题 -->
     <div class="card" oncontextmenu="return false">
-      <h2>第一题：选品判断（30分）</h2>
+      <h2>第一题：帮朋友选一个创业项目</h2>
       <div class="question-body">
         <p>你的朋友打算在大学城旁开一家小店，预算有限只能主打一个品类。这所大学有约 2 万名在校生，周边已有一条成熟商业街。他调研后收集了以下信息，请帮他选择并说明理由。</p>
         <div class="tbl-wrap">
@@ -286,7 +298,7 @@
 
     <!-- 第二题 -->
     <div class="card" oncontextmenu="return false">
-      <h2>第二题：数据对比决策（25分）</h2>
+      <h2>第二题：网店夏季选品</h2>
       <div class="question-body">
         <p>一家网店正在考虑上架以下 4 款夏季产品，预算只够同时运营 2 款。以下是某电商平台的市场调研数据：</p>
         <div class="tbl-wrap">
@@ -338,7 +350,7 @@
 
     <!-- 第三题 -->
     <div class="card" oncontextmenu="return false">
-      <h2>第三题：AI建议审核（25分）</h2>
+      <h2>第三题：新品推了两周，AI 给了这些建议</h2>
       <div class="question-body">
         <p>产品背景：一款售价 ¥89 的蓝牙耳机，采购成本 ¥32，上架 2 周。目前日均销量 3 单（其中广告带来 1 单，自然流量带来 2 单），有 4 条评价（平均 4.2 分），广告每天花费 ¥150。同品类竞品平均有 200+ 条评价，头部产品月销 3000+。</p>
         <p>请对以下 AI 给出的每条建议进行判断：</p>
@@ -349,10 +361,10 @@
 
     <!-- 第四题 -->
     <div class="card" oncontextmenu="return false">
-      <h2>第四题：趋势分析（20分）</h2>
+      <h2>第四题：你会进入这个市场吗？</h2>
       <div class="question-body">
         <p>以下是某品类过去 12 个月的搜索指数（该品类平均客单价约 ¥120，采购成本约 ¥40，物流周期约 25 天）：</p>
-        <div class="bar-chart" id="trend-chart"></div>
+        <div class="trend-chart-wrap" id="trend-chart"></div>
         <div class="tbl-wrap">
           <table id="trend-table">
             <thead>
@@ -580,19 +592,40 @@ function buildQ3() {
    BUILD TREND CHART & TABLE
 ═══════════════════════════════════════════════════════ */
 function buildTrendChart() {
-  const chart = document.getElementById("trend-chart");
+  const container = document.getElementById("trend-chart");
+  const W = 600, H = 200, padL = 36, padR = 16, padT = 24, padB = 36;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
   const max = Math.max(...TREND_DATA.map(d => d.v));
-  TREND_DATA.forEach(({ m, v }) => {
-    const pct = Math.round((v / max) * 100);
-    const col = document.createElement("div");
-    col.className = "bar-col";
-    col.innerHTML = `
-      <div class="bar" style="height:${pct}%;" title="${m}: ${v}"></div>
-      <div class="bar-val">${v}</div>
-      <div class="bar-lbl">${m}</div>
-    `;
-    chart.appendChild(col);
+  const n = TREND_DATA.length;
+
+  const x = (i) => padL + (i / (n - 1)) * plotW;
+  const y = (v) => padT + plotH - (v / max) * plotH;
+
+  // Build polyline points
+  const points = TREND_DATA.map((d, i) => `${x(i)},${y(d.v)}`).join(" ");
+  // Area fill (close at bottom)
+  const area = `${x(0)},${y(0)} ${points} ${x(n-1)},${padT+plotH} ${x(0)},${padT+plotH}`;
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
+  // Grid lines
+  for (let i = 0; i <= 4; i++) {
+    const gy = padT + (plotH / 4) * i;
+    const label = Math.round(max - (max / 4) * i);
+    svg += `<line x1="${padL}" y1="${gy}" x2="${W-padR}" y2="${gy}" stroke="#e0d9d0" stroke-width="0.5"/>`;
+    svg += `<text x="${padL-6}" y="${gy+4}" text-anchor="end" font-size="10" fill="#8a8279">${label}</text>`;
+  }
+  // Area fill
+  svg += `<polygon points="${area}" fill="rgba(179,92,58,0.12)"/>`;
+  // Line
+  svg += `<polyline points="${points}" fill="none" stroke="#b35c3a" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+  // Dots + labels
+  TREND_DATA.forEach((d, i) => {
+    svg += `<circle cx="${x(i)}" cy="${y(d.v)}" r="4" fill="#fff" stroke="#b35c3a" stroke-width="2"/>`;
+    svg += `<text x="${x(i)}" y="${y(d.v)-10}" text-anchor="middle" font-size="11" font-weight="600" fill="#5a5550">${d.v}</text>`;
+    svg += `<text x="${x(i)}" y="${H-8}" text-anchor="middle" font-size="10" fill="#8a8279">${d.m}</text>`;
   });
+  svg += `</svg>`;
+  container.innerHTML = svg;
 }
 
 function buildTrendTable() {
