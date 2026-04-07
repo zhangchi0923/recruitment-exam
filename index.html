@@ -207,8 +207,7 @@
   <div id="state-verify">
     <div class="card" style="max-width:480px; margin:60px auto 0;">
       <div style="text-align:center; margin-bottom:20px;">
-        <h1 style="margin-bottom:4px;">招聘笔试</h1>
-        <span class="company-name">立拓立恒初试问卷</span>
+        <h1 style="margin-bottom:4px;">立拓立恒亚马逊运营岗初试问卷</h1>
       </div>
 
       <div class="exam-notice">
@@ -493,7 +492,13 @@ function initVerify() {
   // Check for autosave
   const saved = loadAutosave();
   if (saved) {
-    msgEl.innerHTML = '<div class="msg msg-warning">检测到上次未完成的答题记录，开始答题后将自动恢复。</div>';
+    const elapsed = Math.floor((Date.now() - new Date(saved.startTime).getTime()) / 1000);
+    const leftMin = Math.max(0, Math.floor((EXAM_DURATION - elapsed) / 60));
+    if (leftMin <= 0) {
+      msgEl.innerHTML = '<div class="msg msg-error">您的答题时间已用完，点击开始将自动提交已填写内容。</div>';
+    } else {
+      msgEl.innerHTML = `<div class="msg msg-warning">检测到未完成的答题记录，剩余约 ${leftMin} 分钟。点击开始答题后将恢复进度，计时继续。</div>`;
+    }
   }
 }
 
@@ -525,7 +530,19 @@ function handleStart() {
   const saved = loadAutosave();
   if (saved) {
     restoreAnswers(saved.answers);
-    remainingSeconds = saved.remaining;
+    // Compute remaining from absolute start time — no pause exploit
+    startTime = new Date(saved.startTime);
+    const elapsed = Math.floor((Date.now() - startTime.getTime()) / 1000);
+    remainingSeconds = Math.max(0, EXAM_DURATION - elapsed);
+  } else {
+    startTime = new Date();
+  }
+
+  if (remainingSeconds <= 0) {
+    // Already expired — auto-submit whatever they have
+    showState("exam");
+    autoSubmit();
+    return;
   }
 
   showState("exam");
@@ -613,14 +630,13 @@ function renderTimer() {
    AUTO-SAVE
 ═══════════════════════════════════════════════════════ */
 function startAutoSave() {
-  startTime = new Date();
   autoSave();
   autoSaveInterval = setInterval(autoSave, 30_000);
 }
 
 function autoSave() {
-  if (!token) return;
-  const data = { answers: collectAnswers(), remaining: remainingSeconds, ts: Date.now() };
+  if (!token || !startTime) return;
+  const data = { answers: collectAnswers(), startTime: startTime.toISOString(), ts: Date.now() };
   try {
     localStorage.setItem(`autosave_${token}`, JSON.stringify(data));
   } catch(e) { /* quota exceeded – silently ignore */ }
