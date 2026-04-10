@@ -153,6 +153,9 @@
     .trend-chart-wrap { margin: 16px 0; overflow-x: auto; }
     .trend-chart-wrap svg { display: block; width: 100%; height: auto; min-width: 500px; }
 
+    /* ── AI Recommendation blocks ── */
+    .ai-rec { background: #f0ebe4; border-left: 3px solid #b35c3a; padding: 12px 16px; margin: 10px 0; border-radius: 0 8px 8px 0; font-size: 14px; line-height: 1.7; }
+
     /* ── Mobile responsive ── */
     @media (max-width: 640px) {
       #app { padding: 20px 10px 40px; }
@@ -210,7 +213,7 @@
 <!-- Fixed timer bar -->
 <div id="timer-bar">
   <span id="timer-label">剩余时间</span>
-  <span id="timer-display">60:00</span>
+  <span id="timer-display">45:00</span>
 </div>
 
 <div id="app">
@@ -223,7 +226,7 @@
       </div>
 
       <div class="exam-notice">
-        请填写以下信息开始答题。点击开始答题后，您将有 <strong>60 分钟</strong>的时间完成填写，中途退出无效，填写完毕务必点击提交。本问卷无标准答案，按个人风格填写即可。如有任何疑问请联系 HR。
+        请填写以下信息开始答题。点击开始答题后，您将有 <strong>45 分钟</strong>的时间完成填写，中途退出无效，填写完毕务必点击提交。本问卷无标准答案，按个人风格填写即可。如有任何疑问请联系 HR。
       </div>
 
       <div id="verify-msg" style="margin-top:16px;"></div>
@@ -248,165 +251,172 @@
 
     <!-- 第一题 -->
     <div class="card" oncontextmenu="return false">
-      <h2>第一题：帮朋友选一个创业项目</h2>
+      <h2>第一题：帮朋友选品开店</h2>
       <div class="question-body">
-        <p>你的朋友打算在大学城旁开一家小店，手里有 <strong>8 万元启动资金</strong>，只能主打一个品类。这所大学有约 2 万名在校生，周边已有一条成熟商业街。他调研后收集了以下信息，请帮他选择并说明理由。</p>
+        <p>你的好朋友攒了5万块钱，想开一家线上店铺。由于资金有限，最多只能同时运营2个产品。他做了一些市场调研，收集了4个夏季产品的数据，请你帮他分析一下。</p>
+
+        <div class="exam-notice" style="margin-bottom:16px;">
+          <strong>市场背景：</strong>目前该电商平台正处于夏季品类流量高峰期。平台近期调整了退货政策，退货运费由卖家全额承担。同时平台正在大力扶持宠物品类，新卖家入驻宠物类目前3个月可享受流量加权和广告费补贴。另外，近半年来该平台上"便携小家电"品类出现了多起因产品质量引发的集中差评事件，平台已加强该品类的质检审核门槛。
+        </div>
+
         <div class="tbl-wrap">
           <table>
             <thead>
               <tr>
-                <th></th>
-                <th>A：手机壳</th>
-                <th>B：现磨咖啡</th>
-                <th>C：文具盲盒</th>
-                <th>D：自习室（按时收费）</th>
+                <th>数据维度</th>
+                <th>A. 迷你风扇</th>
+                <th>B. 冰袖</th>
+                <th>C. 便携果汁杯</th>
+                <th>D. 宠物冰垫</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>周边同类店铺数</td><td>12家</td><td>2家</td><td>0家</td><td>3家（口碑一般）</td></tr>
-              <tr><td>需求频率</td><td>中（换机才买）</td><td>高（每天可能买）</td><td>低（偶尔尝鲜）</td><td>高（考研/考公季爆满）</td></tr>
-              <tr><td>单次客单价</td><td>20-40元</td><td>12-25元</td><td>29-59元</td><td>15-30元/次</td></tr>
-              <tr><td>启动成本</td><td>低（进货即可）</td><td>高（设备+原料+培训）</td><td>中（进货即可）</td><td>很高（装修+隔音+空调）</td></tr>
-              <tr><td>利润率</td><td>约50%</td><td>约60%</td><td>约40%</td><td>约70%（边际成本极低）</td></tr>
-              <tr><td>月租金</td><td>约3000元（小铺位）</td><td>约6000元（需临街）</td><td>约3000元（小铺位）</td><td>约8000元（需大面积）</td></tr>
-              <tr><td>备注</td><td>线上同款普遍便宜30-50%；学生复购周期约1年</td><td>需选址在人流动线上；隔壁有一家奶茶店生意很好</td><td>最近社交媒体上很火，但类似热度通常持续3-6个月；利润含退货损耗</td><td>前3个月几乎不盈利；口碑建立后复购率极高；寒暑假期间客流骤降</td></tr>
+              <tr><td>月搜索量</td><td>86,000</td><td>62,000</td><td>35,000</td><td>8,500</td></tr>
+              <tr><td>在售卖家数</td><td>4,500</td><td>1,600</td><td>3,800</td><td>280</td></tr>
+              <tr><td>平均售价</td><td>¥38</td><td>¥15</td><td>¥72</td><td>¥48</td></tr>
+              <tr><td>预估采购成本</td><td>¥14</td><td>¥3</td><td>¥30</td><td>¥13</td></tr>
+              <tr><td>平均评分</td><td>4.6</td><td>4.1</td><td>4.3</td><td>3.8</td></tr>
+              <tr><td>评价数中位数</td><td>1,200条</td><td>85条</td><td>520条</td><td>35条</td></tr>
+              <tr><td>头部前10占总销量</td><td>74%</td><td>32%</td><td>56%</td><td>28%</td></tr>
+              <tr><td>退货率</td><td>3%</td><td>9%</td><td>15%</td><td>4%</td></tr>
+              <tr><td>近3月搜索趋势</td><td>平稳</td><td>上升(+25%)</td><td>下降(-18%)</td><td>快速上升(+60%)</td></tr>
+              <tr><td>新品占比(近6月上架)</td><td>8%</td><td>38%</td><td>12%</td><td>52%</td></tr>
+              <tr><td>平均广告点击成本CPC</td><td>¥2.8</td><td>¥0.6</td><td>¥3.5</td><td>¥0.8</td></tr>
             </tbody>
           </table>
         </div>
       </div>
 
       <div class="subq">
-        <div class="subq-title">1. 你的选择是什么？</div>
-        <div class="radio-group" id="q1-choice">
-          <label><input type="radio" name="q1_choice" value="A" /> A：手机壳</label>
-          <label><input type="radio" name="q1_choice" value="B" /> B：现磨咖啡</label>
-          <label><input type="radio" name="q1_choice" value="C" /> C：文具盲盒</label>
-          <label><input type="radio" name="q1_choice" value="D" /> D：自习室</label>
+        <div class="subq-title">1.1 你的朋友预算有限，只能同时运营2个产品。你推荐哪两个？请说明理由。</div>
+        <div class="checkbox-group" id="q1-choices-group">
+          <label><input type="checkbox" name="q1_choices" value="A" /> A. 迷你风扇</label>
+          <label><input type="checkbox" name="q1_choices" value="B" /> B. 冰袖</label>
+          <label><input type="checkbox" name="q1_choices" value="C" /> C. 便携果汁杯</label>
+          <label><input type="checkbox" name="q1_choices" value="D" /> D. 宠物冰垫</label>
         </div>
+        <textarea id="q1-reasoning" placeholder="请说明推荐理由…" rows="5"></textarea>
       </div>
 
       <div class="subq">
-        <div class="subq-title">2. 选择理由（至少3点）</div>
-        <textarea id="q1-reasoning" placeholder="请详细说明您的选择理由…" rows="5"></textarea>
+        <div class="subq-title">1.2 这4个产品中，有没有哪个乍一看数据不错，但你仍然不建议做的？为什么？</div>
+        <textarea id="q1-trap" placeholder="请分析存在陷阱的产品…" rows="5"></textarea>
       </div>
 
       <div class="subq">
-        <div class="subq-title">3. 没选其他选项的原因各是什么？（各至少1点）</div>
-        <textarea id="q1-others" placeholder="请分别说明没有选择其他选项的理由…" rows="5"></textarea>
+        <div class="subq-title">1.3 产品D（宠物冰垫）搜索量最低，但你朋友对这个品类很感兴趣。你会支持还是劝阻？请分析利弊。</div>
+        <div class="radio-group">
+          <label><input type="radio" name="q1_petmat" value="支持" /> 支持</label>
+          <label><input type="radio" name="q1_petmat" value="劝阻" /> 劝阻</label>
+        </div>
+        <textarea id="q1-petmat-reason" placeholder="请分析利弊…" rows="5"></textarea>
+      </div>
+
+      <div class="subq">
+        <div class="subq-title">1.4 如果只能选1个产品，且必须在3个月内做到品类前10，你选哪个？如果时间放宽到12个月呢？为什么？</div>
+        <textarea id="q1-timeframe" placeholder="请分别分析3个月和12个月两种情形…" rows="5"></textarea>
+      </div>
+
+      <div class="subq">
+        <div class="subq-title">1.5 请根据你在1.1中的选择，为其中一个产品做一个简单的首月经营预算估算：预估首月需要多少广告费？预计能卖多少单？毛利大概多少？（粗略估算即可，说明你的计算思路）</div>
+        <textarea id="q1-budget" placeholder="请写出你的估算思路和数字…" rows="5"></textarea>
       </div>
     </div>
 
     <!-- 第二题 -->
     <div class="card" oncontextmenu="return false">
-      <h2>第二题：网店夏季选品</h2>
+      <h2>第二题：产品上架两周了</h2>
       <div class="question-body">
-        <p>一家网店正在考虑上架以下 4 款夏季产品，预算只够同时运营 2 款。以下是某电商平台的市场调研数据：</p>
+        <p>假设你朋友最终选择了其中一个产品并上架了。以下是该产品上架两周后的经营数据：</p>
+
         <div class="tbl-wrap">
           <table>
             <thead>
               <tr>
-                <th></th>
-                <th>迷你风扇</th>
-                <th>冰袖</th>
-                <th>便携果汁杯</th>
-                <th>宠物冰垫</th>
+                <th>数据项</th>
+                <th>数值</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>月搜索量</td><td>82,000</td><td>65,000</td><td>28,000</td><td>9,500</td></tr>
-              <tr><td>在售卖家数</td><td>4,300</td><td>1,800</td><td>3,200</td><td>320</td></tr>
-              <tr><td>平均售价</td><td>¥39</td><td>¥15</td><td>¥69</td><td>¥45</td></tr>
-              <tr><td>平均评分</td><td>4.6</td><td>4.1</td><td>4.3</td><td>3.8</td></tr>
-              <tr><td>头部前10名占总销量</td><td>72%</td><td>35%</td><td>58%</td><td>41%</td></tr>
-              <tr><td>退货率</td><td>3%</td><td>8%</td><td>12%</td><td>5%</td></tr>
-              <tr><td>近3个月搜索趋势</td><td>稳定</td><td>上升中</td><td>下降中</td><td>快速上升</td></tr>
-              <tr><td>预估采购成本</td><td>¥12</td><td>¥3</td><td>¥28</td><td>¥15</td></tr>
+              <tr><td>上架天数</td><td>14天</td></tr>
+              <tr><td>累计销量</td><td>42单（日均3单，其中广告约1单，自然约2单）</td></tr>
+              <tr><td>当前售价</td><td>¥89</td></tr>
+              <tr><td>采购成本</td><td>¥32</td></tr>
+              <tr><td>累计评价</td><td>4条（平均4.2分）</td></tr>
+              <tr><td>广告日均花费</td><td>¥150</td></tr>
+              <tr><td>广告日均点击量</td><td>85次</td></tr>
+              <tr><td>广告转化率</td><td>1.2%</td></tr>
+              <tr><td>自然流量日均访客</td><td>约120人</td></tr>
+              <tr><td>自然转化率</td><td>1.7%</td></tr>
+              <tr><td>同品类竞品平均评价数</td><td>200+条</td></tr>
+              <tr><td>同品类头部卖家月销</td><td>3,000+单</td></tr>
+              <tr><td>库存剩余</td><td>500件（首批备货）</td></tr>
             </tbody>
           </table>
         </div>
-      </div>
 
-      <div class="subq">
-        <div class="subq-title">1. 选哪两个产品？为什么？</div>
-        <div class="checkbox-group" id="q2-choices">
-          <label><input type="checkbox" name="q2_choices" value="迷你风扇" /> 迷你风扇</label>
-          <label><input type="checkbox" name="q2_choices" value="冰袖" /> 冰袖</label>
-          <label><input type="checkbox" name="q2_choices" value="便携果汁杯" /> 便携果汁杯</label>
-          <label><input type="checkbox" name="q2_choices" value="宠物冰垫" /> 宠物冰垫</label>
-        </div>
-        <textarea id="q2-reasoning" placeholder="请说明选择这两款产品的理由…" rows="5"></textarea>
-      </div>
-
-      <div class="subq">
-        <div class="subq-title">2. 有没有哪个产品数据看起来好但你仍然不推荐的？为什么？</div>
-        <textarea id="q2-concern" placeholder="请分析数据看起来好但存在问题的产品…" rows="5"></textarea>
-      </div>
-
-      <div class="subq">
-        <div class="subq-title">3. 假设只能选1款，且必须用3个月时间做到品类前10名，你选哪个？如果给你12个月呢？选择会变吗？为什么？</div>
-        <textarea id="q2-timeframe" placeholder="请分析3个月和12个月两种情形下的选择差异及理由…" rows="5"></textarea>
-      </div>
-    </div>
-
-    <!-- 第三题 -->
-    <div class="card" oncontextmenu="return false">
-      <h2>第三题：新品推了两周，AI 给了这些建议</h2>
-      <div class="question-body">
-        <p>产品背景：一款售价 ¥89 的蓝牙耳机，采购成本 ¥32，上架 2 周。目前日均销量 3 单（其中广告带来 1 单，自然流量带来 2 单），有 4 条评价（平均 4.2 分），广告每天花费 ¥150。同品类竞品平均有 200+ 条评价，头部产品月销 3000+。</p>
-        <p>请对以下 AI 给出的每条建议进行判断：</p>
-      </div>
-
-      <div id="q3-items"></div>
-    </div>
-
-    <!-- 第四题 -->
-    <div class="card" oncontextmenu="return false">
-      <h2>第四题：你会进入这个市场吗？</h2>
-      <div class="question-body">
-        <p>以下是某品类过去 12 个月的搜索指数（该品类平均客单价约 ¥120，采购成本约 ¥40，物流周期约 25 天）：</p>
+        <p>该品类的月度搜索趋势如下：</p>
         <div class="trend-chart-wrap" id="trend-chart"></div>
-        <div class="tbl-wrap">
-          <table id="trend-table">
-            <thead>
-              <tr id="trend-head-months"></tr>
-            </thead>
-            <tbody>
-              <tr id="trend-body-vals"></tr>
-            </tbody>
-          </table>
+        <p style="font-size:13px; color:#8a8279; margin-top:4px;">该品类平均客单价¥120，物流补货周期约25天</p>
+      </div>
+
+      <div class="subq">
+        <div class="subq-title">2.1 根据以上数据，你认为这个产品目前的经营状况如何？用你自己的话总结一下。</div>
+        <textarea id="q2-status" placeholder="请用自己的话总结当前经营状况…" rows="5"></textarea>
+      </div>
+
+      <div class="subq">
+        <div class="subq-title">2.2 以下是AI给出的4条运营建议，请分别判断每条建议是否合理：</div>
+
+        <div class="ai-rec"><strong>建议一：</strong>广告日均花费¥150，但广告每天只带来约1单（客单价¥89），广告投入产出比严重失衡。建议立即暂停所有广告投放，先依靠自然流量维持出单，等自然订单量提升后再考虑重新开启广告。</div>
+        <div class="radio-group">
+          <label><input type="radio" name="q2_ai_1" value="合理" /> 合理</label>
+          <label><input type="radio" name="q2_ai_1" value="有疑问" /> 有疑问</label>
+          <label><input type="radio" name="q2_ai_1" value="不合理" /> 不合理</label>
         </div>
-      </div>
+        <textarea id="q2-ai-reason-1" placeholder="请说明判断理由…" rows="4"></textarea>
 
-      <div class="subq">
-        <div class="subq-title">1. 这个品类最可能是什么类型的产品？请猜测并说明依据。</div>
-        <textarea id="q4-guess" placeholder="请猜测产品类型并给出判断依据…" rows="5"></textarea>
-      </div>
-
-      <div class="subq">
-        <div class="subq-title">2. 如果你是卖家，你会不会做这个品类？</div>
-        <div class="radio-group" id="q4-do-group">
-          <label><input type="radio" name="q4_do" value="会" /> 会</label>
-          <label><input type="radio" name="q4_do" value="不会" /> 不会</label>
+        <div class="ai-rec" style="margin-top:16px;"><strong>建议二：</strong>当前售价¥89，但同品类平均客单价¥120。考虑到只有4条评价且竞品评价数远超你，消费者缺乏购买信心。建议将价格降至¥59，通过低价快速冲量积累评价，后期再逐步提价。</div>
+        <div class="radio-group">
+          <label><input type="radio" name="q2_ai_2" value="合理" /> 合理</label>
+          <label><input type="radio" name="q2_ai_2" value="有疑问" /> 有疑问</label>
+          <label><input type="radio" name="q2_ai_2" value="不合理" /> 不合理</label>
         </div>
-        <textarea id="q4-do-reason" placeholder="请说明原因…" rows="4"></textarea>
+        <textarea id="q2-ai-reason-2" placeholder="请说明判断理由…" rows="4"></textarea>
+
+        <div class="ai-rec" style="margin-top:16px;"><strong>建议三：</strong>目前仅上架14天，累计42单，数据样本量较小，转化率等指标波动较大，不具备统计意义。建议维持现有运营节奏不做大调整，继续观察1-2周，积累更多数据后再做决策。</div>
+        <div class="radio-group">
+          <label><input type="radio" name="q2_ai_3" value="合理" /> 合理</label>
+          <label><input type="radio" name="q2_ai_3" value="有疑问" /> 有疑问</label>
+          <label><input type="radio" name="q2_ai_3" value="不合理" /> 不合理</label>
+        </div>
+        <textarea id="q2-ai-reason-3" placeholder="请说明判断理由…" rows="4"></textarea>
+
+        <div class="ai-rec" style="margin-top:16px;"><strong>建议四：</strong>上架两周日均仅3单，而同品类头部卖家月销3,000+单（日均100+单），差距超过30倍。且只有4条评价，要追赶竞品的200+条评价需要很长时间。建议果断放弃该产品，将资金和精力转移到其他更有潜力的新品上。</div>
+        <div class="radio-group">
+          <label><input type="radio" name="q2_ai_4" value="合理" /> 合理</label>
+          <label><input type="radio" name="q2_ai_4" value="有疑问" /> 有疑问</label>
+          <label><input type="radio" name="q2_ai_4" value="不合理" /> 不合理</label>
+        </div>
+        <textarea id="q2-ai-reason-4" placeholder="请说明判断理由…" rows="4"></textarea>
       </div>
 
       <div class="subq">
-        <div class="subq-title">3. 如果做，你认为应该在几月份开始备货、几月份开始推广？为什么？</div>
-        <textarea id="q4-timing" placeholder="请说明备货和推广的最佳时间节点及理由…" rows="4"></textarea>
+        <div class="subq-title">2.3 参考上面的搜索趋势图，如果这是你的产品，你会在几月份开始备货下一批？几月份加大推广力度？为什么？</div>
+        <textarea id="q2-timing" placeholder="请说明备货和推广的最佳时间节点及理由…" rows="5"></textarea>
       </div>
 
       <div class="subq">
-        <div class="subq-title">4. 以下两种经营策略，你更倾向哪种？为什么？</div>
+        <div class="subq-title">2.4 面对这个季节性品类，你会选择以下哪种长期经营策略？请说明理由，并分析你的选择可能带来的风险。</div>
         <div class="question-body" style="margin-bottom:10px;">
           <p><strong>策略A：</strong>专注这个品类，旺季全力冲刺做到头部（目标品类前5），淡季用来优化产品、谈供应链、研究竞品，为下一个旺季蓄力。</p>
           <p><strong>策略B：</strong>以此品类为起点，淡季同步开发互补品类（如夏季对应产品），用1-2年时间建立覆盖全年的产品线。</p>
         </div>
-        <div class="radio-group" id="q4-strategy-group">
-          <label><input type="radio" name="q4_strategy" value="A" /> 策略A</label>
-          <label><input type="radio" name="q4_strategy" value="B" /> 策略B</label>
+        <div class="radio-group">
+          <label><input type="radio" name="q2_strategy" value="策略A" /> 策略A</label>
+          <label><input type="radio" name="q2_strategy" value="策略B" /> 策略B</label>
         </div>
-        <textarea id="q4-strategy-reason" placeholder="请说明选择该策略的理由…" rows="4"></textarea>
+        <textarea id="q2-strategy-reason" placeholder="请说明选择理由及潜在风险…" rows="5"></textarea>
       </div>
     </div>
 
@@ -441,27 +451,11 @@
 ═══════════════════════════════════════════════════════ */
 const API_URL = "https://exam.litohance.com";
 
-const EXAM_DURATION = 60 * 60; // seconds
+const EXAM_DURATION = 45 * 60; // seconds
 
 /* ═══════════════════════════════════════════════════════
-   CONSTANTS & STATE
+   STATE
 ═══════════════════════════════════════════════════════ */
-const Q3_SUGGESTIONS = [
-  { id: 1, text: "广告每天花费¥150但只带来1单成交，投产比过低，建议停掉所有广告，等自然流量起来后再考虑重新投放" },
-  { id: 2, text: "当前只有4条评价，消费者信任度不够，建议暂时控制广告预算不要加大，先通过自然订单积累评价基础" },
-  { id: 3, text: "同品类竞品普遍定价在¥60-80区间，当前¥89定价偏高，建议降价到¥59以快速获取订单和评价积累" },
-  { id: 4, text: "产品刚上架2周，目前的销量和转化数据波动较大，建议维持现状再观察1-2周，等数据稳定后再做调整" },
-  { id: 5, text: "目前日均3单中有2单来自自然流量，说明产品本身有吸引力，建议把重心放在优化广告关键词精准度上" },
-  { id: 6, text: "上架2周日均仅3单，对标同期新品通常能做到日均8-10单，差距明显，建议放弃该产品把资源转投到更有潜力的新品上" },
-];
-
-const TREND_DATA = [
-  { m: "1月", v: 72 }, { m: "2月", v: 45 }, { m: "3月", v: 18 },
-  { m: "4月", v: 10 }, { m: "5月", v: 8 }, { m: "6月", v: 6 },
-  { m: "7月", v: 5 }, { m: "8月", v: 9 }, { m: "9月", v: 22 },
-  { m: "10月", v: 55 }, { m: "11月", v: 88 }, { m: "12月", v: 95 },
-];
-
 let token = "";
 let startTime = null;
 let timerInterval = null;
@@ -473,19 +467,17 @@ let submittedPayload = null; // kept in memory for retry
    INIT
 ═══════════════════════════════════════════════════════ */
 document.addEventListener("DOMContentLoaded", () => {
-  buildQ3();
   buildTrendChart();
-  buildTrendTable();
   initVerify();
 
   document.getElementById("btn-start").addEventListener("click", handleStart);
   document.getElementById("btn-submit").addEventListener("click", handleSubmit);
   document.getElementById("btn-retry").addEventListener("click", handleRetry);
 
-  // Limit Q2 checkboxes to max 2
-  document.querySelectorAll('input[name="q2_choices"]').forEach(cb => {
+  // Limit Q1 checkboxes to max 2
+  document.querySelectorAll('input[name="q1_choices"]').forEach(cb => {
     cb.addEventListener("change", () => {
-      const checked = document.querySelectorAll('input[name="q2_choices"]:checked');
+      const checked = document.querySelectorAll('input[name="q1_choices"]:checked');
       if (checked.length > 2) {
         cb.checked = false;
       }
@@ -578,31 +570,15 @@ function handleStart() {
 }
 
 /* ═══════════════════════════════════════════════════════
-   BUILD Q3
-═══════════════════════════════════════════════════════ */
-function buildQ3() {
-  const container = document.getElementById("q3-items");
-  Q3_SUGGESTIONS.forEach(({ id, text }) => {
-    const div = document.createElement("div");
-    div.className = "subq";
-    div.innerHTML = `
-      <div class="subq-title">${id}. ${text}</div>
-      <div class="radio-group">
-        <label><input type="radio" name="q3_j_${id}" value="合理" /> 合理</label>
-        <label><input type="radio" name="q3_j_${id}" value="有疑问" /> 有疑问</label>
-        <label><input type="radio" name="q3_j_${id}" value="不合理" /> 不合理</label>
-      </div>
-      <textarea id="q3-reason-${id}" placeholder="请说明判断理由…" rows="4"></textarea>
-    `;
-    container.appendChild(div);
-  });
-}
-
-/* ═══════════════════════════════════════════════════════
-   BUILD TREND CHART & TABLE
+   BUILD TREND CHART (SVG)
 ═══════════════════════════════════════════════════════ */
 function buildTrendChart() {
   const container = document.getElementById("trend-chart");
+  const TREND_DATA = [
+    {m:"1月",v:72},{m:"2月",v:45},{m:"3月",v:18},{m:"4月",v:10},{m:"5月",v:8},{m:"6月",v:6},
+    {m:"7月",v:5},{m:"8月",v:9},{m:"9月",v:22},{m:"10月",v:55},{m:"11月",v:88},{m:"12月",v:95}
+  ];
+
   const W = 600, H = 200, padL = 36, padR = 16, padT = 24, padB = 36;
   const plotW = W - padL - padR, plotH = H - padT - padB;
   const max = Math.max(...TREND_DATA.map(d => d.v));
@@ -614,7 +590,7 @@ function buildTrendChart() {
   // Build polyline points
   const points = TREND_DATA.map((d, i) => `${x(i)},${y(d.v)}`).join(" ");
   // Area fill (close at bottom)
-  const area = `${x(0)},${y(0)} ${points} ${x(n-1)},${padT+plotH} ${x(0)},${padT+plotH}`;
+  const area = `${x(0)},${y(TREND_DATA[0].v)} ${points} ${x(n-1)},${padT+plotH} ${x(0)},${padT+plotH}`;
 
   let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
   // Grid lines
@@ -636,15 +612,6 @@ function buildTrendChart() {
   });
   svg += `</svg>`;
   container.innerHTML = svg;
-}
-
-function buildTrendTable() {
-  const headRow = document.getElementById("trend-head-months");
-  const valRow  = document.getElementById("trend-body-vals");
-  TREND_DATA.forEach(({ m, v }) => {
-    const th = document.createElement("th"); th.textContent = m; headRow.appendChild(th);
-    const td = document.createElement("td"); td.textContent = v; valRow.appendChild(td);
-  });
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -704,63 +671,58 @@ function clearAutosave() {
    COLLECT / RESTORE ANSWERS
 ═══════════════════════════════════════════════════════ */
 function collectAnswers() {
-  const q2Choices = Array.from(document.querySelectorAll('input[name="q2_choices"]:checked'))
+  const q1Choices = Array.from(document.querySelectorAll('input[name="q1_choices"]:checked'))
                          .map(el => el.value).join(",");
 
-  const q3Judgments = Q3_SUGGESTIONS.map(({ id }) => {
-    const radio  = document.querySelector(`input[name="q3_j_${id}"]:checked`);
-    const reason = document.getElementById(`q3-reason-${id}`).value;
+  const q2Judgments = [1,2,3,4].map(id => {
+    const radio = document.querySelector(`input[name="q2_ai_${id}"]:checked`);
+    const reason = document.getElementById(`q2-ai-reason-${id}`).value;
     return { id, judgment: radio ? radio.value : "", reason };
   });
 
   return {
-    q1_choice:    getRadio("q1_choice"),
-    q1_reasoning: val("q1-reasoning"),
-    q1_others:    val("q1-others"),
-    q2_choices:   q2Choices,
-    q2_reasoning: val("q2-reasoning"),
-    q2_concern:   val("q2-concern"),
-    q2_timeframe: val("q2-timeframe"),
-    q3_judgments: q3Judgments,
-    q4_trend_guess: val("q4-guess"),
-    q4_do_or_not:   getRadio("q4_do"),
-    q4_do_reason:   val("q4-do-reason"),
-    q4_timing:      val("q4-timing"),
-    q4_strategy:    getRadio("q4_strategy"),
-    q4_strategy_reason: val("q4-strategy-reason"),
+    q1_choices:    q1Choices,
+    q1_reasoning:  val("q1-reasoning"),
+    q1_trap:       val("q1-trap"),
+    q1_petmat:     getRadio("q1_petmat") + "（" + val("q1-petmat-reason") + "）",
+    q1_timeframe:  val("q1-timeframe"),
+    q1_budget:     val("q1-budget"),
+    q2_status:     val("q2-status"),
+    q2_judgments:  q2Judgments,
+    q2_timing:     val("q2-timing"),
+    q2_strategy:   getRadio("q2_strategy") + "（" + val("q2-strategy-reason") + "）",
   };
 }
 
 function restoreAnswers(a) {
   if (!a) return;
 
-  setRadio("q1_choice", a.q1_choice);
-  setVal("q1-reasoning", a.q1_reasoning);
-  setVal("q1-others",    a.q1_others);
-
-  if (a.q2_choices) {
-    a.q2_choices.split(",").forEach(v => {
-      const cb = document.querySelector(`input[name="q2_choices"][value="${v}"]`);
+  if (a.q1_choices) {
+    a.q1_choices.split(",").forEach(v => {
+      const cb = document.querySelector(`input[name="q1_choices"][value="${v}"]`);
       if (cb) cb.checked = true;
     });
   }
-  setVal("q2-reasoning", a.q2_reasoning);
-  setVal("q2-concern",   a.q2_concern);
-  setVal("q2-timeframe", a.q2_timeframe);
+  setVal("q1-reasoning", a.q1_reasoning);
+  setVal("q1-trap",      a.q1_trap);
+  // q1_petmat stored as "支持（reason）" — restore radio + reason separately from raw fields
+  if (a.q1_petmat_radio) setRadio("q1_petmat", a.q1_petmat_radio);
+  setVal("q1-petmat-reason", a.q1_petmat_reason);
+  setVal("q1-timeframe", a.q1_timeframe);
+  setVal("q1-budget",    a.q1_budget);
 
-  if (Array.isArray(a.q3_judgments)) {
-    a.q3_judgments.forEach(({ id, judgment, reason }) => {
-      setRadio(`q3_j_${id}`, judgment);
-      setVal(`q3-reason-${id}`, reason);
+  setVal("q2-status",    a.q2_status);
+
+  if (Array.isArray(a.q2_judgments)) {
+    a.q2_judgments.forEach(({ id, judgment, reason }) => {
+      setRadio(`q2_ai_${id}`, judgment);
+      setVal(`q2-ai-reason-${id}`, reason);
     });
   }
 
-  setVal("q4-guess",          a.q4_trend_guess);
-  setRadio("q4_do",           a.q4_do_or_not);
-  setVal("q4-do-reason",      a.q4_do_reason);
-  setVal("q4-timing",         a.q4_timing);
-  setRadio("q4_strategy",     a.q4_strategy);
-  setVal("q4-strategy-reason", a.q4_strategy_reason);
+  setVal("q2-timing",    a.q2_timing);
+  if (a.q2_strategy_radio) setRadio("q2_strategy", a.q2_strategy_radio);
+  setVal("q2-strategy-reason", a.q2_strategy_reason);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -796,17 +758,16 @@ async function submitExam(isAuto) {
     phone:       window._candidatePhone || "",
     start_time:  startTime  ? startTime.toISOString()  : new Date().toISOString(),
     submit_time: submitTime.toISOString(),
-    q1_choice:   answers.q1_choice,
-    q1_reasoning: [answers.q1_reasoning, answers.q1_others].filter(Boolean).join("\n\n【其他选项排除理由】\n"),
-    q2_choices:  answers.q2_choices,
-    q2_reasoning: answers.q2_reasoning,
-    q2_concern:  answers.q2_concern,
-    q2_timeframe: answers.q2_timeframe,
-    q3_judgments: JSON.stringify(answers.q3_judgments),
-    q4_trend_guess: answers.q4_trend_guess,
-    q4_do_or_not:   answers.q4_do_or_not + (answers.q4_do_reason ? "（" + answers.q4_do_reason + "）" : ""),
-    q4_timing:      answers.q4_timing,
-    q4_strategy:    answers.q4_strategy + (answers.q4_strategy_reason ? "（" + answers.q4_strategy_reason + "）" : ""),
+    q1_choices:   answers.q1_choices,
+    q1_reasoning: answers.q1_reasoning,
+    q1_trap:      answers.q1_trap,
+    q1_petmat:    answers.q1_petmat,
+    q1_timeframe: answers.q1_timeframe,
+    q1_budget:    answers.q1_budget,
+    q2_status:    answers.q2_status,
+    q2_judgments: JSON.stringify(answers.q2_judgments),
+    q2_timing:    answers.q2_timing,
+    q2_strategy:  answers.q2_strategy,
   };
 
   submittedPayload = payload;
